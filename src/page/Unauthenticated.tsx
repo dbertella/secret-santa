@@ -1,8 +1,9 @@
 import { Box, Button, Input, TabBar } from "@revolut/ui-kit";
 import { FormEvent } from "react";
 import { useAuth } from "reactfire";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/firestore";
 import { Switch, Route, useHistory } from "react-router-dom";
 
 const MySignInForm = ({

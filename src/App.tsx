@@ -26,14 +26,9 @@ function ProfileCard() {
 
   const { displayName, email } =
     useFirestoreDocData<User>(userDetailsRef).data ?? {};
-  console.log(user, userDetailsRef);
-
   // // defend against null field(s)
   // profileImagePath = profileImagePath || DEFAULT_IMAGE_PATH;
 
-  // if (!commonName || !favoriteAnimal) {
-  //   throw new Error("Missing Profile Info Error");
-  // }
   const auth = useAuth();
 
   const writeUser = () =>
