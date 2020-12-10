@@ -88,7 +88,6 @@ export function Unauthenticated() {
   return (
     <Box mx="auto" maxWidth={500} py={3}>
       <Menu />
-      <Intro />
       <Switch>
         <Route path="/login">
           <LogInForm />
@@ -97,6 +96,7 @@ export function Unauthenticated() {
           <SignUpForm />
         </Route>
       </Switch>
+      <Intro />
     </Box>
   );
 }
