@@ -5,6 +5,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import { Switch, Route, useHistory } from "react-router-dom";
+import { Intro } from "./Intro";
 
 const MySignInForm = ({
   onSubmit,
@@ -29,7 +30,7 @@ const MySignInForm = ({
     });
   };
   return (
-    <Box mx="auto" maxWidth={500}>
+    <Box>
       <Box use="form" onSubmit={onSubmit}>
         <Box pt={2} />
         <Input name="email" placeholder="email" />
@@ -39,7 +40,9 @@ const MySignInForm = ({
         <Button type="submit">Invia</Button>
       </Box>
       <hr />
-      <Button onClick={singInWithGoogle}>Sign in with Google</Button>
+      <Button onClick={singInWithGoogle} variant="outline">
+        Sign in with Google
+      </Button>
     </Box>
   );
 };
@@ -83,8 +86,9 @@ function SignUpForm() {
 
 export function Unauthenticated() {
   return (
-    <>
+    <Box mx="auto" maxWidth={500} py={3}>
       <Menu />
+      <Intro />
       <Switch>
         <Route path="/login">
           <LogInForm />
@@ -93,6 +97,6 @@ export function Unauthenticated() {
           <SignUpForm />
         </Route>
       </Switch>
-    </>
+    </Box>
   );
 }
