@@ -8,6 +8,7 @@ export type User = {
   displayName: string;
   email: string;
   family: string;
+  emoji?: string;
 };
 
 export const Intro = ({ children }: { children?: ReactNode }) => {
@@ -35,7 +36,7 @@ export const Intro = ({ children }: { children?: ReactNode }) => {
       </TextBox>
       {participants.map((user, i) => (
         <TextBox key={user.displayName}>
-          {++i}) {user.displayName} {sample(smilyAndPeople)}
+          {++i}) {user.displayName} {user.emoji ?? sample(smilyAndPeople)}
         </TextBox>
       ))}
       <Box pt={5} />

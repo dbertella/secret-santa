@@ -8,7 +8,7 @@ import {
   Color,
   TabBar,
 } from "@revolut/ui-kit";
-import { FormEvent, Suspense } from "react";
+import { Suspense } from "react";
 import {
   AuthCheck,
   useFirestoreDocData,
@@ -21,6 +21,8 @@ import { Unauthenticated } from "./page/Unauthenticated";
 import { Intro, User } from "./page/Intro";
 import { Layout } from "./page/Layout";
 import { Redirect, Route, Switch } from "react-router-dom";
+import { smilyAndPeople } from "./allEmojis";
+import { Controller, useForm } from "react-hook-form";
 
 const Family = {
   BertCan: "Bertella / Cantù",
@@ -81,34 +83,27 @@ function Home() {
 }
 
 function ProfileCard() {
-  // get the current user.
-  // this is safe because we've wrapped this component in an `AuthCheck` component.
+  const { register, handleSubmit, control } = useForm<User>();
+
   const { data: user } = useUser();
   const db = useFirestore();
   // read the user details from Firestore based on the current user's ID
   const userDetailsRef = db.collection("participants").doc(user.uid);
-  const { displayName, family } =
+  const { displayName, family, emoji } =
     useFirestoreDocData<User>(userDetailsRef).data ?? {};
-  console.log(family);
-  const writeUser = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // @ts-ignore
-    const [displayName, email, family] = e.target;
-    console.log(displayName.value, email.value, family.value);
-    db.collection("participants").doc(user.uid).set({
-      displayName: displayName.value,
-      email: email.value,
-      family: family.value,
-    });
+  const writeUser = (data: User) => {
+    console.log(data);
+    db.collection("participants").doc(user.uid).set(data);
   };
 
   return (
     <Box>
-      <form onSubmit={writeUser}>
+      <form onSubmit={handleSubmit(writeUser)}>
         <Input
           key={displayName}
           name="displayName"
           placeholder="Nome"
+          ref={register({ required: true })}
           defaultValue={displayName ?? user?.displayName ?? undefined}
           required
         />
@@ -116,21 +111,41 @@ function ProfileCard() {
         <Input
           name="email"
           placeholder="Email"
+          ref={register({ required: true })}
           defaultValue={user?.email ?? undefined}
           required
         />
         <Box pt={1} />
-        <InputSelect
+        <Controller
           key={family}
+          as={InputSelect}
+          control={control}
+          rules={{ required: true }}
           placeholder="Famiglia"
           options={Object.values(Family).map((fam) => ({
             label: fam,
             value: fam,
           }))}
-          defaultValue={family}
-          input={{
-            name: "family",
-            required: true,
+          name="family"
+          defaultValue={family ?? ""}
+          dropdown={{
+            flip: true,
+          }}
+        />
+        <Box pt={1} />
+        <Controller
+          key={emoji}
+          as={InputSelect}
+          control={control}
+          placeholder="Emoji"
+          options={Object.values(smilyAndPeople).map((em) => ({
+            label: em,
+            value: em,
+          }))}
+          name="emoji"
+          defaultValue={emoji ?? ""}
+          dropdown={{
+            flip: true,
           }}
         />
         <Box pt={1} />
