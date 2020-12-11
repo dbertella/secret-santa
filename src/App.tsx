@@ -105,7 +105,6 @@ function ProfileCard() {
           placeholder="Nome"
           ref={register({ required: true })}
           defaultValue={displayName ?? user?.displayName ?? undefined}
-          required
         />
         <Box pt={1} />
         <Input
@@ -113,7 +112,6 @@ function ProfileCard() {
           placeholder="Email"
           ref={register({ required: true })}
           defaultValue={user?.email ?? undefined}
-          required
         />
         <Box pt={1} />
         <Controller
@@ -149,7 +147,7 @@ function ProfileCard() {
         />
         <Box pt={1} />
         <Button type="submit">
-          {displayName ? "Aggiorna" : "Partecipa al gioco!"}
+          {displayName ? "Aggiorna i tuoi dati" : "Partecipa al gioco!"}
         </Button>
       </form>
     </Box>

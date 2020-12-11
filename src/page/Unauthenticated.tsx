@@ -1,17 +1,19 @@
-import { Box, Button, Input, TabBar } from "@revolut/ui-kit";
-import { FormEvent } from "react";
+import { Box, Button, Input, TabBar, Text } from "@revolut/ui-kit";
+import { FormEvent, useState } from "react";
 import { useAuth } from "reactfire";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-import { Switch, Route, useHistory } from "react-router-dom";
+import { Switch, Route, useHistory, Redirect } from "react-router-dom";
 import { Intro } from "./Intro";
 import { Layout } from "./Layout";
 import singInWithGoogleBtn from "./signinWithGoogle.svg";
 
 const MySignInForm = ({
+  btnText,
   onSubmit,
 }: {
+  btnText: string,
   onSubmit: ((event: FormEvent<HTMLFormElement>) => void) | undefined;
 }) => {
   const auth = useAuth();
@@ -31,19 +33,28 @@ const MySignInForm = ({
       history.push("/");
     });
   };
+  const [emailAndPwd, setEmailAndPwd] = useState(false);
   return (
     <Box>
-      <Box use="form" onSubmit={onSubmit}>
-        <Box pt={2} />
-        <Input name="email" placeholder="email" />
-        <Box pt={2} />
-        <Input name="password" placeholder="password" />
-        <Box pt={2} />
-        <Button type="submit">Invia</Button>
-      </Box>
+      <Box pt={2} />
+      {emailAndPwd ? (
+        <Box use="form" onSubmit={onSubmit}>
+          <Input name="email" placeholder="email" />
+          <Box pt={2} />
+          <Input name="password" placeholder="password" />
+          <Box pt={2} />
+          <Button type="submit">{btnText}</Button>
+        </Box>
+      ) : (
+        <Button onClick={() => setEmailAndPwd(true)}>
+          {btnText} con email e password
+        </Button>
+      )}
+
       <hr />
       <Button onClick={singInWithGoogle} variant="outline">
-        <img src={singInWithGoogleBtn} alt="Sign in with google" /> Login con Google
+        <img src={singInWithGoogleBtn} alt="Sign in with google" />
+        <Text ml={2}>Accedi con Google</Text>
       </Button>
     </Box>
   );
@@ -52,8 +63,8 @@ const MySignInForm = ({
 function Menu() {
   return (
     <TabBar variant="segmented">
-      <TabBar.Item to="/login">Login</TabBar.Item>
-      <TabBar.Item to="/register">Register</TabBar.Item>
+      <TabBar.Item to="/login">Log in</TabBar.Item>
+      <TabBar.Item to="/register">Registrati</TabBar.Item>
     </TabBar>
   );
 }
@@ -68,7 +79,7 @@ function LogInForm() {
     auth.signInWithEmailAndPassword(email.value, password.value);
   };
 
-  return <MySignInForm onSubmit={signIn} />;
+  return <MySignInForm btnText="Log in" onSubmit={signIn} />;
 }
 
 function SignUpForm() {
@@ -81,7 +92,7 @@ function SignUpForm() {
     auth.createUserWithEmailAndPassword(email.value, password.value);
   };
 
-  return <MySignInForm onSubmit={signIn} />;
+  return <MySignInForm btnText="Registrati" onSubmit={signIn} />;
 }
 
 export function Unauthenticated() {
@@ -91,12 +102,13 @@ export function Unauthenticated() {
         <Box pt={2} />
         <Menu />
         <Switch>
-          <Route path="/">
+          <Route path="/login">
             <LogInForm />
           </Route>
           <Route path="/register">
             <SignUpForm />
           </Route>
+          <Redirect to="/login" />
         </Switch>
       </Intro>
     </Layout>
