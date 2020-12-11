@@ -1,7 +1,8 @@
 import { Box, TextBox } from "@revolut/ui-kit";
-import { uniqBy } from "lodash";
+import { uniqBy, sample } from "lodash";
 import { useEffect, useState } from "react";
 import { useFirestore } from "reactfire";
+import { smilyAndPeople } from "../allEmojis";
 
 export type User = {
   displayName: string;
@@ -26,7 +27,7 @@ export const Intro = () => {
   return (
     <>
       <TextBox variant="h2" my={2}>
-        Bertella's Secret Santa
+        Bertella's Secret Santa 🎅🏽
       </TextBox>
       <TextBox>
         Il Secret Santa, o "Babbo Natale Segreto", ha come scopo l'alleggerire i
@@ -39,10 +40,12 @@ export const Intro = () => {
         farlo.{" "}
         <a href="https://www.wikihow.it/Fare-un-Secret-Santa">Leggi tutto</a>
       </TextBox>
-      <TextBox variant="h3" my={2}>Lista dei Partecipanti</TextBox>
+      <TextBox variant="h3" my={2}>
+        Lista dei Partecipanti
+      </TextBox>
       {participants.map((user, i) => (
         <TextBox key={user.displayName}>
-          {++i}) {user.displayName}
+          {++i}) {user.displayName} {sample(smilyAndPeople)}
         </TextBox>
       ))}
       <Box pt={5} />
