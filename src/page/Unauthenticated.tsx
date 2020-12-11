@@ -6,6 +6,7 @@ import "firebase/auth";
 import "firebase/firestore";
 import { Switch, Route, useHistory } from "react-router-dom";
 import { Intro } from "./Intro";
+import { Layout } from "./Layout";
 
 const MySignInForm = ({
   onSubmit,
@@ -86,17 +87,19 @@ function SignUpForm() {
 
 export function Unauthenticated() {
   return (
-    <Box mx="auto" maxWidth={500} py={3}>
-      <Menu />
-      <Switch>
-        <Route path="/login">
-          <LogInForm />
-        </Route>
-        <Route path="/register">
-          <SignUpForm />
-        </Route>
-      </Switch>
-      <Intro />
-    </Box>
+    <Layout>
+      <Intro>
+        <Box pt={2} />
+        <Menu />
+        <Switch>
+          <Route path="/login">
+            <LogInForm />
+          </Route>
+          <Route path="/register">
+            <SignUpForm />
+          </Route>
+        </Switch>
+      </Intro>
+    </Layout>
   );
 }

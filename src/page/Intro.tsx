@@ -1,29 +1,21 @@
 import { Box, TextBox } from "@revolut/ui-kit";
-import { uniqBy, sample } from "lodash";
-import { useEffect, useState } from "react";
-import { useFirestore } from "reactfire";
+import { sample } from "lodash";
+import { ReactNode } from "react";
+import { useFirestore, useFirestoreCollectionData } from "reactfire";
 import { smilyAndPeople } from "../allEmojis";
 
 export type User = {
   displayName: string;
   email: string;
+  family: string;
 };
 
-export const Intro = () => {
+export const Intro = ({ children }: { children?: ReactNode }) => {
   const db = useFirestore();
-  const [participants, setParticipants] = useState<User[]>([]);
+  const participantsRef = db.collection("participants");
 
-  useEffect(() => {
-    db.collection("participants")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          setParticipants((state) =>
-            uniqBy([...state, doc.data() as User], "displayName")
-          );
-        });
-      });
-  }, [db]);
+  const participants =
+    useFirestoreCollectionData<User>(participantsRef).data ?? [];
   return (
     <>
       <TextBox variant="h2" my={2}>
@@ -34,12 +26,10 @@ export const Intro = () => {
         costi e diffondere lo spirito natalizio facendo un regalo a qualcuno che
         magari non sarebbe nella tua abituale lista. Il gioco coinvolge un
         gruppo di persone che, ad estrazione, si faranno uno scambio di regali
-        senza che sapere chi farà il dono a chi. Prendi in considerazione l'idea
-        di giocare a Secret Santa durante le vacanze natalizie, oppure leggi le
-        istruzioni per capire come giocare, qualora fossi già stato invitato a
-        farlo.{" "}
+        senza che sapere chi farà il dono a chi.{" "}
         <a href="https://www.wikihow.it/Fare-un-Secret-Santa">Leggi tutto</a>
       </TextBox>
+      {children}
       <TextBox variant="h3" my={2}>
         Lista dei Partecipanti
       </TextBox>
