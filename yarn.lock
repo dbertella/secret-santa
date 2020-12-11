@@ -1998,10 +1998,10 @@
   dependencies:
     "@styled-system/core" "^5.1.2"
 
-"@revolut/ui-kit@^11.3.0":
-  version "11.3.0"
-  resolved "https://registry.yarnpkg.com/@revolut/ui-kit/-/ui-kit-11.3.0.tgz#38934c62cdb6e018cbcf639435a6e558bd10789c"
-  integrity sha512-f3Fp2kNGhJ4r0HeaBT61RnCyXondNqH/aYNwsqU6jlfXmgXhUpnogHsss0zTvZYvPk2r5z07fpuW9YXz1ifL6g==
+"@revolut/ui-kit@^11.4.0":
+  version "11.4.0"
+  resolved "https://registry.yarnpkg.com/@revolut/ui-kit/-/ui-kit-11.4.0.tgz#4e288f5dbbd48d51ecdb1de0abe93703fc88201c"
+  integrity sha512-Z93l66kUefOgf7z6CQJdfPnjS3sLfmMkrhlGz8ehA2qJLVGAfECW9jSqMHj/+iGWahZqyZdCCuiwYyWw3DAC4w==
   dependencies:
     "@emotion/is-prop-valid" "^0.7.3"
     "@revolut/icons" "^1.30.0"

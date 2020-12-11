@@ -57,9 +57,9 @@ function Home() {
   const db = useFirestore();
   // read the user details from Firestore based on the current user's ID
   const userDetailsRef = db.collection("participants").doc(user.uid);
-  const { displayName } = useFirestoreDocData<User>(userDetailsRef).data ?? {};
-
-  if (!displayName) {
+  const userData = useFirestoreDocData<User>(userDetailsRef);
+  const { displayName } = userData.data ?? {};
+  if (userData.status === "success" && !displayName) {
     return <Redirect to="profile" />;
   }
 
@@ -89,18 +89,18 @@ function ProfileCard() {
   const db = useFirestore();
   // read the user details from Firestore based on the current user's ID
   const userDetailsRef = db.collection("participants").doc(user.uid);
-  const { displayName, family, emoji } =
-    useFirestoreDocData<User>(userDetailsRef).data ?? {};
+  const userData = useFirestoreDocData<User>(userDetailsRef);
+  const { displayName, family, emoji } = userData.data ?? {};
   const writeUser = (data: User) => {
-    console.log(data);
     db.collection("participants").doc(user.uid).set(data);
   };
-
+  if (userData.status === "loading") {
+    return <Box>Loading ...</Box>;
+  }
   return (
     <Box>
       <form onSubmit={handleSubmit(writeUser)}>
         <Input
-          key={displayName}
           name="displayName"
           placeholder="Nome"
           ref={register({ required: true })}
@@ -117,7 +117,6 @@ function ProfileCard() {
         />
         <Box pt={1} />
         <Controller
-          key={family}
           as={InputSelect}
           control={control}
           rules={{ required: true }}
@@ -134,7 +133,6 @@ function ProfileCard() {
         />
         <Box pt={1} />
         <Controller
-          key={emoji}
           as={InputSelect}
           control={control}
           placeholder="Emoji"
@@ -147,6 +145,7 @@ function ProfileCard() {
           dropdown={{
             flip: true,
           }}
+          message="Scegli una emoji da associare al tuo nome"
         />
         <Box pt={1} />
         <Button type="submit">

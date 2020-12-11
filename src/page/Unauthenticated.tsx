@@ -7,6 +7,7 @@ import "firebase/firestore";
 import { Switch, Route, useHistory } from "react-router-dom";
 import { Intro } from "./Intro";
 import { Layout } from "./Layout";
+import singInWithGoogleBtn from "./signinWithGoogle.svg";
 
 const MySignInForm = ({
   onSubmit,
@@ -42,7 +43,7 @@ const MySignInForm = ({
       </Box>
       <hr />
       <Button onClick={singInWithGoogle} variant="outline">
-        Sign in with Google
+        <img src={singInWithGoogleBtn} alt="Sign in with google" /> Login con Google
       </Button>
     </Box>
   );
@@ -64,7 +65,6 @@ function LogInForm() {
     e.preventDefault();
     // @ts-ignore
     const [email, password] = e.target;
-    console.log(email.value, password.value);
     auth.signInWithEmailAndPassword(email.value, password.value);
   };
 
@@ -78,7 +78,6 @@ function SignUpForm() {
     e.preventDefault();
     // @ts-ignore
     const [email, password] = e.target;
-    console.log(email.value, password.value);
     auth.createUserWithEmailAndPassword(email.value, password.value);
   };
 
@@ -92,7 +91,7 @@ export function Unauthenticated() {
         <Box pt={2} />
         <Menu />
         <Switch>
-          <Route path="/login">
+          <Route path="/">
             <LogInForm />
           </Route>
           <Route path="/register">
