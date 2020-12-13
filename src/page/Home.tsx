@@ -1,8 +1,14 @@
 import { Box, Color, TextBox } from "@revolut/ui-kit";
 import { sample } from "lodash";
 import { Redirect } from "react-router-dom";
-import { useFirestore, useFirestoreCollectionData, useFirestoreDocData, useUser } from "reactfire";
+import {
+  useFirestore,
+  useFirestoreCollectionData,
+  useFirestoreDocData,
+  useUser,
+} from "reactfire";
 import { User } from "./Layout";
+import { SecretSection } from "./SecretSection";
 import { smilyAndPeople } from "../allEmojis";
 
 export function Home() {
@@ -11,7 +17,6 @@ export function Home() {
   const { data: user } = useUser();
   const db = useFirestore();
   const participantsRef = db.collection("participants");
-
   const participants =
     useFirestoreCollectionData<User>(participantsRef).data ?? [];
   // read the user details from Firestore based on the current user's ID
@@ -35,8 +40,9 @@ export function Home() {
         >
           {displayName}!
         </TextBox>{" "}
-        A breve verrà estratto il nome a cui dovrai fare un regalo 🎁
+        Tempo di pensare al regalo 🎁
       </TextBox>
+      <SecretSection />
       <TextBox variant="h3" my={2}>
         Lista dei Partecipanti
       </TextBox>

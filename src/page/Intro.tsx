@@ -26,10 +26,6 @@ export const Intro = ({ children }: { children?: ReactNode }) => {
         <br />
         Non ti resta che fare login con google o registrarti con email and
         password e aspettare l'estrazione del nome!
-        <br />
-        <br />
-        P.S. Se non sei convinto scopri di più su{" "}
-        <a href="https://www.wikihow.it/Fare-un-Secret-Santa">Secret Santa</a>
       </TextBox>
       {children}
     </>

@@ -2,6 +2,7 @@ import { Box, BoxProps, TextBox } from "@revolut/ui-kit";
 import { Footer } from "../Footer";
 
 export type User = {
+  NO_ID_FIELD: string;
   displayName: string;
   email: string;
   family: string;

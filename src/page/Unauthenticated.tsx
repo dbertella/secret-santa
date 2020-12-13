@@ -108,7 +108,7 @@ export function Unauthenticated() {
           <Route path="/register">
             <SignUpForm />
           </Route>
-          <Redirect to="/login" />
+          <Redirect exact from="/" to="/login" />
         </Switch>
       </Intro>
     </Layout>
