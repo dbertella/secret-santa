@@ -1,4 +1,4 @@
-import { Box, Color, TextBox } from "@revolut/ui-kit";
+import { Box, TextBox } from "@revolut/ui-kit";
 import { sample } from "lodash";
 import { Redirect } from "react-router-dom";
 import {
@@ -30,17 +30,8 @@ export function Home() {
   return (
     <Box>
       <TextBox variant="h4">
-        Ciao{" "}
-        <TextBox
-          use="span"
-          bg={Color.TRANSPARENT_GREY_35}
-          px={1}
-          color={Color.WHITE}
-          borderRadius="input"
-        >
-          {displayName}!
-        </TextBox>{" "}
-        Tempo di pensare al regalo 🎁
+        Ciao <TextBox use="strong">{displayName}!</TextBox> Tempo di pensare al
+        regalo 🎁
       </TextBox>
       <SecretSection />
       <TextBox variant="h3" my={2}>
