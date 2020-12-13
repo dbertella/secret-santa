@@ -1,27 +1,9 @@
-import { Box, TextBox } from "@revolut/ui-kit";
-import { sample } from "lodash";
+import { TextBox } from "@revolut/ui-kit";
 import { ReactNode } from "react";
-import { useFirestore, useFirestoreCollectionData } from "reactfire";
-import { smilyAndPeople } from "../allEmojis";
-
-export type User = {
-  displayName: string;
-  email: string;
-  family: string;
-  emoji?: string;
-};
 
 export const Intro = ({ children }: { children?: ReactNode }) => {
-  const db = useFirestore();
-  const participantsRef = db.collection("participants");
-
-  const participants =
-    useFirestoreCollectionData<User>(participantsRef).data ?? [];
   return (
     <>
-      <TextBox variant="h2" my={2}>
-        Bertella's Secret Santa 🎅🏽
-      </TextBox>
       <TextBox>
         Quest'anno visto che noi non ci vedremo 😭 e non so se voi riuscirete a
         vedervi volevamo proporvi questo gioco.
@@ -46,21 +28,10 @@ export const Intro = ({ children }: { children?: ReactNode }) => {
         password e aspettare l'estrazione del nome!
         <br />
         <br />
-        Den, Aure e Liam 😘
-        <br />
         P.S. Se non sei convinto scopri di più su{" "}
         <a href="https://www.wikihow.it/Fare-un-Secret-Santa">Secret Santa</a>
       </TextBox>
       {children}
-      <TextBox variant="h3" my={2}>
-        Lista dei Partecipanti
-      </TextBox>
-      {participants.map((user, i) => (
-        <TextBox key={user.displayName}>
-          {++i}) {user.displayName} {user.emoji ?? sample(smilyAndPeople)}
-        </TextBox>
-      ))}
-      <Box pt={5} />
     </>
   );
 };
