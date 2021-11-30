@@ -5,23 +5,21 @@ export const Intro = ({ children }: { children?: ReactNode }) => {
   return (
     <>
       <Box>
-        Quest'anno visto che noi non ci vedremo 😭 e non so se voi riuscirete a
-        vedervi volevamo proporvi questo gioco.
+        È giunto il tempo di Secret Santa versione Natale 2021
         <br />
         <br />
-        Si chiama Secret Santa, e consiste nel decidere un budget (pensavamo{" "}
-        <strong>20 euro</strong>) e fare un regalo a una persona che vi verrà
-        assegnata random da questo sito (una volta che avrò implementato questa
-        feature).
+        Che cos'è Secret Santa? Il gioco consiste nel decidere un budget e fare
+        un regalo a una persona che ti verrà assegnata random da questo sito, se
+        tutto va bene e non ci sono 🐛 (bugs) dovrebbe essere una persona di
+        un'altra famiglia, in caso contrario conttattami che vedo di fare
+        qualcosa a riguardo.
         <br />
         <br />
-        I regali si possono spedire a casa dell'interessato o magari pensavo li
-        portiamo a casa del babbo e poi li recupererete tutti per natale.
+        Quest'anno potremo finalmente vederci tutti insieme per Natale quindi i
+        regali ce li scambiamo di persona! 🎉
         <br />
         <br />
-        Il mittente del regalo sarà segreto nessuno tranne voi saprete chi ha
-        regalato cosa a chi, poi vediamo cosa ne salta fuori. Che ne dite?
-        Volete giocare?
+        Che ne dici? Vuoi giocare?
         <br />
         <br />
         Non ti resta che fare login con google o registrarti con email and
