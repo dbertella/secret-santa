@@ -28,7 +28,7 @@ export const Admin = () => {
     const choices = mySecretSanta(participants);
     console.log(choices);
     participants.forEach((p) => {
-      db.collection("secretsSantas")
+      db.collection("secretsSantas21")
         .doc(p.NO_ID_FIELD)
         .set({ secretSanta: choices[p.NO_ID_FIELD] });
     });

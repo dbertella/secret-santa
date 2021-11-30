@@ -1,4 +1,4 @@
-import { Box, TextBox } from "@revolut/ui-kit";
+import { Box, VStack, Text } from "@revolut/ui-kit";
 import { sample } from "lodash";
 import { Redirect } from "react-router-dom";
 import {
@@ -29,19 +29,21 @@ export function Home() {
 
   return (
     <Box>
-      <TextBox variant="h4">
-        Ciao <TextBox use="strong">{displayName}!</TextBox> Tempo di pensare al
-        regalo 🎁
-      </TextBox>
+      <Text variant="h4">
+        Ciao <Text use="strong">{displayName}!</Text> Tempo di pensare al regalo
+        🎁
+      </Text>
       <SecretSection />
-      <TextBox variant="h3" my={2}>
+      <Text variant="h3" my={2}>
         Lista dei Partecipanti
-      </TextBox>
-      {participants.map((user, i) => (
-        <TextBox key={user.displayName}>
-          {++i}) {user.displayName} {user.emoji ?? sample(smilyAndPeople)}
-        </TextBox>
-      ))}
+      </Text>
+      <VStack space="s-4">
+        {participants.map((user, i) => (
+          <Text key={user.displayName}>
+            {++i}) {user.displayName} {user.emoji ?? sample(smilyAndPeople)}
+          </Text>
+        ))}
+      </VStack>
     </Box>
   );
 }

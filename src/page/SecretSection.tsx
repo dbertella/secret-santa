@@ -1,4 +1,4 @@
-import { Color, TextBox } from "@revolut/ui-kit";
+import { Color, Text } from "@revolut/ui-kit";
 import { useFirestore, useFirestoreDocData, useUser } from "reactfire";
 import { User } from "./Layout";
 
@@ -6,7 +6,7 @@ export function SecretSection() {
   const { data: user } = useUser();
   const db = useFirestore();
 
-  const secretRef = db.collection("secretsSantas").doc(user.uid);
+  const secretRef = db.collection("secretsSantas21").doc(user.uid);
   const { secretSanta } =
     useFirestoreDocData<{ secretSanta: string }>(secretRef).data ?? {};
 
@@ -16,31 +16,36 @@ export function SecretSection() {
 
   return (
     <>
-      <TextBox use="h3" mt={3}>
-        Il tuo Secret Santa è:{" "}
-        <TextBox
-          use="span"
-          bg={Color.TRANSPARENT_GREY_35}
-          px={1}
-          color={Color.WHITE}
-          borderRadius="input"
-        >
-          {displayName}
-        </TextBox>
-      </TextBox>
+      <Text use="h3" mt={3}>
+        {displayName ? (
+          <>
+            Il tuo Secret Santa è:{" "}
+            <Text
+              bg={Color.TRANSPARENT_GREY_35}
+              px={1}
+              color={Color.WHITE}
+              borderRadius="input"
+            >
+              {displayName}
+            </Text>
+          </>
+        ) : (
+          <Text>A breve l'estrazione, stay tuned!</Text>
+        )}
+      </Text>
       {address && (
         <>
-          <TextBox my={2}>
+          <Text my={2}>
             In caso volessi spedire il tuo regalo questo è l'indirizzo:
-          </TextBox>
-          <TextBox
+          </Text>
+          <Text
             use="span"
             bg={Color.TRANSPARENT_GREY_50}
             p={1}
             color={Color.WHITE}
           >
             {address}
-          </TextBox>
+          </Text>
         </>
       )}
     </>

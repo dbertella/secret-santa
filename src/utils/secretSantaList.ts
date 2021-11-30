@@ -20,17 +20,16 @@ export const mySecretSanta = (
   if (retry < MAX_RETRY) {
     try {
       const acc = {};
-      type Choices = keyof typeof acc;
+      // type Choices = keyof typeof acc;
       let pool = userIds;
       userIds.forEach((uid) => {
         const ownFamily = families.find((family) => family.includes(uid));
-        const [partner] = ownFamily?.filter((u) => u !== uid) as Choices[];
-        const partnerChoiceFamily = families.find((family) =>
-          family.includes(partner)
-        );
+        // const [partner] = ownFamily?.filter((u) => u !== uid) as Choices[];
+        // const partnerChoiceFamily = families.find((family) =>
+        //   family.includes(partner)
+        // );
         const filteredPool = pool.filter(
-          (uuid) =>
-            !ownFamily?.includes(uuid) && !partnerChoiceFamily?.includes(uuid)
+          (uuid) => !ownFamily?.includes(uuid) // && !partnerChoiceFamily?.includes(uuid)
         );
 
         const choice = sample(filteredPool);
@@ -42,7 +41,7 @@ export const mySecretSanta = (
 
         pool = pool.filter((uuid) => !(choice === uuid));
 
-        // @ts-ignore
+        // @ts-expect-error
         acc[uid] = choice;
       });
       return acc;

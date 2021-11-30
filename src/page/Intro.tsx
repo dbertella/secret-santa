@@ -1,10 +1,10 @@
-import { TextBox } from "@revolut/ui-kit";
+import { Box } from "@revolut/ui-kit";
 import { ReactNode } from "react";
 
 export const Intro = ({ children }: { children?: ReactNode }) => {
   return (
     <>
-      <TextBox>
+      <Box>
         Quest'anno visto che noi non ci vedremo 😭 e non so se voi riuscirete a
         vedervi volevamo proporvi questo gioco.
         <br />
@@ -26,7 +26,7 @@ export const Intro = ({ children }: { children?: ReactNode }) => {
         <br />
         Non ti resta che fare login con google o registrarti con email and
         password e aspettare l'estrazione del nome!
-      </TextBox>
+      </Box>
       {children}
     </>
   );
