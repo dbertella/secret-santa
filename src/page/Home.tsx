@@ -1,4 +1,4 @@
-import { Box, VStack, Text } from "@revolut/ui-kit";
+import { VStack, Text } from "@revolut/ui-kit";
 import { sample } from "lodash";
 import { Redirect } from "react-router-dom";
 import {
@@ -28,7 +28,7 @@ export function Home() {
   }
 
   return (
-    <Box>
+    <VStack space="s-8">
       <Text variant="h4">
         Ciao <Text use="strong">{displayName}!</Text> Tempo di pensare al regalo
         🎁
@@ -37,7 +37,7 @@ export function Home() {
         Budget 2022: 25/30 Euro (tiene in conto dell'inflazione) 📈
       </Text>
       <SecretSection />
-      <Text variant="h3" my={2}>
+      <Text variant="h3" my="s-2">
         Lista dei Partecipanti
       </Text>
       <VStack space="s-4">
@@ -47,6 +47,6 @@ export function Home() {
           </Text>
         ))}
       </VStack>
-    </Box>
+    </VStack>
   );
 }

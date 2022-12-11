@@ -12,18 +12,20 @@ export function SecretSection() {
 
   const secretUserRef = db.collection("participants").doc(secretSanta);
   const userData = useFirestoreDocData<User>(secretUserRef);
-  const { displayName, address } = userData.data ?? {};
+  const { displayName } = userData.data ?? {};
 
+  console.log(user.uid);
   return (
     <>
-      <Text use="h3" mt={3}>
+      <Text use="h3" mt="s-6">
         {displayName ? (
           <>
             Il tuo Secret Santa è:{" "}
             <Text
-              bg={Color.TRANSPARENT_GREY_35}
-              px={1}
-              color={Color.WHITE}
+              bg={Color.FOREGROUND}
+              px="s-8"
+              py="s-4"
+              color={Color.BACKGROUND}
               borderRadius="input"
             >
               {displayName}
@@ -33,21 +35,21 @@ export function SecretSection() {
           <Text>A breve l'estrazione, stay tuned!</Text>
         )}
       </Text>
-      {address && (
+      {/* {address && (
         <>
-          <Text my={2}>
+          <Text my="s-2">
             In caso volessi spedire il tuo regalo questo è l'indirizzo:
           </Text>
           <Text
             use="span"
             bg={Color.TRANSPARENT_GREY_50}
-            p={1}
+            p="s-2"
             color={Color.WHITE}
           >
             {address}
           </Text>
         </>
-      )}
+      )} */}
     </>
   );
 }

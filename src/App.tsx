@@ -1,4 +1,4 @@
-import { Box, Button, Flex, TabBar } from "@revolut/ui-kit";
+import { Button, HStack, TabBar, VStack } from "@revolut/ui-kit";
 import { Suspense } from "react";
 import { AuthCheck, useAuth } from "reactfire";
 import "firebase/auth";
@@ -14,39 +14,40 @@ function Menu() {
   const auth = useAuth();
 
   return (
-    <Flex mb={2}>
-      <TabBar variant="segmented" flex={1}>
+    <HStack mb="s-2" space="s-16" align="center">
+      <TabBar variant="segmented fit">
         <TabBar.Item to="/">Home</TabBar.Item>
         <TabBar.Item to="/regole">Regole</TabBar.Item>
         <TabBar.Item to="/profile">Profilo</TabBar.Item>
       </TabBar>
-      <Box pr={2} />
       <Button size="sm" onClick={() => auth.signOut()}>
         Log out
       </Button>
-    </Flex>
+    </HStack>
   );
 }
 
 export function Routes() {
   return (
     <Layout>
-      <Menu />
-      <Switch>
-        <Route path="/" exact>
-          <Home />
-        </Route>
-        <Route path="/regole">
-          <Intro />
-        </Route>
-        <Route path="/profile">
-          <ProfileCard />
-        </Route>
-        <Route path="/super-secret-admin-page">
-          <Admin />
-        </Route>
-        <Redirect exact from="/login" to="/" />
-      </Switch>
+      <VStack space="s-8">
+        <Menu />
+        <Switch>
+          <Route path="/" exact>
+            <Home />
+          </Route>
+          <Route path="/regole">
+            <Intro />
+          </Route>
+          <Route path="/profile">
+            <ProfileCard />
+          </Route>
+          <Route path="/super-secret-admin-page">
+            <Admin />
+          </Route>
+          <Redirect exact from="/login" to="/" />
+        </Switch>
+      </VStack>
     </Layout>
   );
 }

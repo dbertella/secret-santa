@@ -1,7 +1,7 @@
-import { TextBox } from "@revolut/ui-kit";
+import { Text } from "@revolut/ui-kit";
 
 export const Footer = () => (
-  <TextBox borderTop="1px solid" pt={2} mt={2}>
+  <Text borderTop="1px solid" pt="s-2" mt="s-2">
     Fatto Con ❤️ da Den, Aure e Liam 😘
-  </TextBox>
+  </Text>
 );

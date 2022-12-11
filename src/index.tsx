@@ -4,8 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { FirebaseAppProvider } from "reactfire";
-import { ThemeProvider } from "styled-components";
-import { DefaultTheme } from "@revolut/ui-kit";
+import { Provider, UnifiedTheme } from "@revolut/ui-kit";
 import { BrowserRouter } from "react-router-dom";
 
 const firebaseConfig = {
@@ -23,11 +22,11 @@ const firebaseConfig = {
 ReactDOM.render(
   <React.StrictMode>
     <FirebaseAppProvider firebaseConfig={firebaseConfig}>
-      <ThemeProvider theme={DefaultTheme}>
+      <Provider theme={UnifiedTheme}>
         <BrowserRouter>
           <App />
         </BrowserRouter>
-      </ThemeProvider>
+      </Provider>
     </FirebaseAppProvider>
   </React.StrictMode>,
   document.getElementById("root")

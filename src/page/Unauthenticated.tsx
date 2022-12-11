@@ -1,4 +1,4 @@
-import { Box, Button, Input, TabBar, Text } from "@revolut/ui-kit";
+import { Button, HStack, Input, TabBar, Text, VStack } from "@revolut/ui-kit";
 import { FormEvent, useState } from "react";
 import { useAuth } from "reactfire";
 import firebase from "firebase/app";
@@ -13,7 +13,7 @@ const MySignInForm = ({
   btnText,
   onSubmit,
 }: {
-  btnText: string,
+  btnText: string;
   onSubmit: ((event: FormEvent<HTMLFormElement>) => void) | undefined;
 }) => {
   const auth = useAuth();
@@ -35,28 +35,25 @@ const MySignInForm = ({
   };
   const [emailAndPwd, setEmailAndPwd] = useState(false);
   return (
-    <Box>
-      <Box pt={2} />
+    <VStack space="s-8">
       {emailAndPwd ? (
-        <Box use="form" onSubmit={onSubmit}>
+        <VStack use="form" onSubmit={onSubmit} space="s-4">
           <Input name="email" placeholder="email" />
-          <Box pt={2} />
           <Input name="password" placeholder="password" />
-          <Box pt={2} />
           <Button type="submit">{btnText}</Button>
-        </Box>
+        </VStack>
       ) : (
         <Button onClick={() => setEmailAndPwd(true)}>
           {btnText} con email e password
         </Button>
       )}
-
-      <hr />
-      <Button onClick={singInWithGoogle} variant="outline">
-        <img src={singInWithGoogleBtn} alt="Sign in with google" />
-        <Text ml={2}>Accedi con Google</Text>
+      <Button onClick={singInWithGoogle} variant="secondary">
+        <HStack space="s-8" align="center">
+          <img src={singInWithGoogleBtn} alt="Sign in with google" />
+          <Text ml="s-2">Accedi con Google</Text>
+        </HStack>
       </Button>
-    </Box>
+    </VStack>
   );
 };
 
@@ -98,19 +95,20 @@ function SignUpForm() {
 export function Unauthenticated() {
   return (
     <Layout>
-      <Intro>
-        <Box pt={2} />
-        <Menu />
-        <Switch>
-          <Route path="/login">
-            <LogInForm />
-          </Route>
-          <Route path="/register">
-            <SignUpForm />
-          </Route>
-          <Redirect exact from="/" to="/login" />
-        </Switch>
-      </Intro>
+      <VStack space="s-16">
+        <Intro>
+          <Menu />
+          <Switch>
+            <Route path="/login">
+              <LogInForm />
+            </Route>
+            <Route path="/register">
+              <SignUpForm />
+            </Route>
+            <Redirect exact from="/" to="/login" />
+          </Switch>
+        </Intro>
+      </VStack>
     </Layout>
   );
 }

@@ -1,4 +1,4 @@
-import { Box, Button, TextBox } from "@revolut/ui-kit";
+import { Box, Button, Text } from "@revolut/ui-kit";
 import { useFirestore, useFirestoreCollectionData, useUser } from "reactfire";
 import { mySecretSanta } from "../utils/secretSantaList";
 import { User } from "./Layout";
@@ -16,10 +16,10 @@ export const Admin = () => {
   if (user.displayName !== process.env.REACT_APP_ADMIN_NAME) {
     return (
       <>
-        <TextBox use="h3">Ciao {user.displayName}</TextBox>
-        <TextBox pt={2}>
+        <Text use="h3">Ciao {user.displayName}</Text>
+        <Text pt="s-2">
           Questa è una pagina di admin non dovresti essere qui 😘
-        </TextBox>
+        </Text>
       </>
     );
   }
@@ -35,15 +35,15 @@ export const Admin = () => {
   };
   return (
     <>
-      <TextBox use="h3">Ciao {user.displayName}</TextBox>
-      <TextBox pt={2}>
+      <Text use="h3">Ciao {user.displayName}</Text>
+      <Text pt="s-2">
         È ora di generare i nomi per Bertella's Secret Santa{" "}
         {TODAY.getFullYear()}
-      </TextBox>
-      <TextBox pt={2}>
+      </Text>
+      <Text pt="s-2">
         Schiaccia il bottone rosso per generare i vari Secret Santas
-      </TextBox>
-      <Box pt={2} />
+      </Text>
+      <Box pt="s-2" />
       <Button bg="red" onClick={writeNames}>
         Push the button
       </Button>

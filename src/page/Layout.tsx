@@ -1,4 +1,4 @@
-import { Box, BoxProps, TextBox } from "@revolut/ui-kit";
+import { Box, BoxProps, Text } from "@revolut/ui-kit";
 import { Footer } from "../Footer";
 
 export type User = {
@@ -12,12 +12,12 @@ export type User = {
 
 export const Layout = ({ children, ...rest }: BoxProps) => {
   return (
-    <Box mx="auto" maxWidth={500} p={3} {...rest}>
-      <TextBox variant="h2" my={2}>
+    <Box mx="auto" maxWidth={500} p="s-6" {...rest}>
+      <Text variant="h2" my="s-2">
         Bertella's Secret Santa 🎅🏽
-      </TextBox>
+      </Text>
       {children}
-      <Box pt={3} />
+      <Box pt="s-6" />
       <Footer />
     </Box>
   );
