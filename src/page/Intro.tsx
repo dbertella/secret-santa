@@ -5,7 +5,7 @@ export const Intro = ({ children }: { children?: ReactNode }) => {
   return (
     <>
       <Box>
-        È giunto il tempo di Secret Santa versione Natale 2021
+        È giunto il tempo di Secret Santa versione Natale 2022
         <br />
         <br />
         Che cos'è Secret Santa? Il gioco consiste nel decidere un budget e fare
@@ -17,6 +17,10 @@ export const Intro = ({ children }: { children?: ReactNode }) => {
         <br />
         Quest'anno potremo finalmente vederci tutti insieme per Natale quindi i
         regali ce li scambiamo di persona! 🎉
+        <br />
+        <br />
+        Se ci aspettate e ci vediamo li possiamo scambiare il 26 sera o il 27 a
+        pranzo non so bene quando e se ci vedremo in quei giorni
         <br />
         <br />
         Che ne dici? Vuoi giocare?

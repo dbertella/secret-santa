@@ -33,6 +33,9 @@ export function Home() {
         Ciao <Text use="strong">{displayName}!</Text> Tempo di pensare al regalo
         🎁
       </Text>
+      <Text variant="h6">
+        Budget 2022: 25/30 Euro (tiene in conto dell'inflazione) 📈
+      </Text>
       <SecretSection />
       <Text variant="h3" my={2}>
         Lista dei Partecipanti
